@@ -1,0 +1,36 @@
+services:
+  # 1) INIT: for installing deps, or running one-off setup commands
+  init:
+    build: .
+    container_name: vue-init
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: ["npm", "install"]
+
+  # 2) DEV: run Vite dev server
+  dev:
+    build: .
+    container_name: vue-dev
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_BASE: "/"
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
+
+  # 3) BUILD + DEPLOY: build for GitHub Pages and run deploy script
+  build:
+    build: .
+    container_name: vue-build
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      VITE_BASE: "/"
+    command: ["sh", "-c", "npm run build"]
