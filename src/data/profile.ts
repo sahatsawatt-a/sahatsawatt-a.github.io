@@ -67,7 +67,7 @@ export const skills = {
         { icon: '🛰️', label: 'Embedded System' },
         { icon: '🏭', label: 'Industrial Internet of Things' },
         { icon: '🚀', label: 'Robotics and Autonomous Systems' },
-        { icon: '🤖', label: 'Agentic AI' },        
+        { icon: '🤖', label: 'AI' },        
     ],
 };
 
@@ -142,12 +142,12 @@ export const projects = {
             ],
         },
         {
-            slug: 'ordering-management-system',
+            slug: 'restaurant-ordering-system',
             template: 'etl',
             highlight: false,
-            title: 'Ordering Management System - University Project',
+            title: 'Restaurant Ordering System - University Project',
             description:
-                'A modern ordering management system enhancing customer experience and backend efficiency, with self-service ordering, transparent tracking, and analytics dashboards.',
+                'A modern restaurant ordering system enhancing customer experience and backend efficiency, with self-service ordering, transparent tracking, and analytics dashboards.',
             tags: ['Web Development', 'Laravel', 'Vue', 'QR Code', 'TypeScript'],
             purpose: [
                 'Improve customer flow and reduce wait times',
@@ -163,8 +163,7 @@ export const projects = {
                 'Analytics dashboards for sales, inventory, and decision-making',
                 'Backend optimizations for smooth operations',
             ],
-        }
-
+        },
     ],
 };
 
