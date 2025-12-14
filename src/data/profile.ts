@@ -14,16 +14,16 @@ export const hero = {
         highlight: ["system analyst", "programming", "automation"]
     },
     description: 'I improve system workflows through automation, integration design, and a deep understanding of how systems behave in real environments.',
-    coreFocus: 'System analysis · Integrations · Automation · ELT',
+    coreFocus: 'System analysis · Integrations · Automation · ETL',
     tooling: 'Laravel · Vue 3 · PostgreSQL · Docker · n8n · Airflow',
     quickProfile: {
         systemAnalysisJoinDate: '2024-08-13',
         systemAnalysisLabel: 'System Analysis Role',
         countries: '4 Countries',
-        countriesLabel: 'ELT Integration',
+        countriesLabel: 'ETL Integration',
         cards: [
             { label: 'Core', value: 'System Analysis · Integrations' },
-            { label: 'Automation', value: 'n8n · Airflow · ELT' },
+            { label: 'Automation', value: 'n8n · Airflow · ETL' },
             { label: 'Tech', value: 'Laravel · Vue · Python' },
             { label: 'Data', value: 'PostgreSQL · MySQL' },
         ],
@@ -33,21 +33,12 @@ export const hero = {
 export const about = {
     title: 'About',
     body: [
-        `I’m a system analyst with a strong ability to dive into complex requirements,
-clarify vague problems, and turn them into structured, workable solutions.
-Beyond analyzing behavior and mapping systems, I also bring hands-on development
-understanding that helps me design integrations that aren’t just theoretically correct,
-but practical, resilient, and grounded in real-world constraints.`,
-        `I translate API documentation into clear, developer-friendly explanations
-and design end-to-end integration flows that allow systems to communicate reliably.
-When issues surface, I serve as the first line of technical investigation — reproducing and
-isolating client-side issues, identifying root causes, and escalating only validated backend concerns
-to developers.`,
-        `My growing experience with how systems interact outside controlled environments
-helps me anticipate edge cases, reduce integration friction, and contribute to solutions
-that scale smoothly in actual usage.`,
+        `I’m a system analyst who thrives on breaking down complex requirements, clarifying vague problems, and translating them into structured, workable inputs for engineering teams. I focus on understanding system behavior, data flow, and where integrations typically fail under real-world conditions.`,
+        `I analyze existing systems, generate practical integration ideas, and translate API documentation into clear, developer-friendly explanations that help engineers build solutions faster and with fewer misunderstandings.`,
+        `When issues surface, I act as the first line of technical investigation by reproducing client-side problems, isolating root causes, and escalating only validated backend concerns. In parallel, I continuously explore new technologies and I am currently learning to deploy local AI models and build agentic AI to enhance my workflow and automation capabilities.`,
     ],
 };
+
 
 export const skills = {
     coreTitle: 'Core Skills',
@@ -60,6 +51,7 @@ export const skills = {
         { icon: '🕵️', label: 'Root Cause Analysis & Debugging' },
         { icon: '⚡', label: 'Workflow Automation' },
         { icon: '📈', label: 'ETL Pipelines' },
+        { icon: '👨🏻‍💼', label: 'Agentic AI' },
     ],
     technical: [
         { icon: '🖥️', label: 'Laravel · PHP' },
@@ -68,12 +60,14 @@ export const skills = {
         { icon: '🗃️', label: 'PostgreSQL · MySQL' },
         { icon: '🐳', label: 'Docker · Traefik' },
         { icon: '🔄', label: 'n8n · Airflow' },
+        { icon: '🤖', label: 'Ollama' },        
     ],
     interests: [
         { icon: '🌍', label: 'System Integration' },
         { icon: '🛰️', label: 'Embedded System' },
-        { icon: '🤖', label: 'Industrial Internet of Things' },
+        { icon: '🏭', label: 'Industrial Internet of Things' },
         { icon: '🚀', label: 'Robotics and Autonomous Systems' },
+        { icon: '🤖', label: 'Agentic AI' },        
     ],
 };
 
@@ -85,27 +79,15 @@ export const experience = {
             period: 'Aug 2024 — Present',
             company: 'Cartrack Technology Thailand',
             bullets: [
-                'Work closely with stakeholders to gather and clarify requirements.',
-                'Translate API documentation into clear developer-friendly specifications.',
-                'Design integration flows and ensure systems communicate reliably.',
-                'Act as first-line debugger, isolating client-side issues.',
-                'Provide structured, reproducible reports to developers.',
+                'Gather requirements from stakeholders and translate API documentation into clear developer-ready specifications, delivering 6 successful API integrations.',
+                'Perform end-to-end issue analysis using deductive reasoning and hypothesis testing with infrastructure and engineering teams to resolve production and customer-facing issues.',
+                'Build automation workflows using n8n, Apache Airflow and bash script to reduce manual operations and improve response time.',
+                'Develop ETL pipelines for the debt collection team to improve data accuracy, reduce support investigation time, and enable 100% outreach to clients with outstanding debt.',
             ],
         },
-        {
-            role: 'Automation & Integration Developer',
-            period: '2025 — Present',
-            company: 'Side Projects / Internal Tools',
-            bullets: [
-                'Built automation workflows using n8n and Apache Airflow.',
-                'Developed ETL pipelines to integrate internal systems.',
-                'Improved data accuracy and reduced manual operations.',
-                'Reduce ticket wait time for support team to investigate the issues.',
-                'Help collection team reach out 100% of client with outstanding debt.',
-            ],
-        }
     ],
 };
+
 
 export const projects = {
     title: 'Projects Highlight',
@@ -125,9 +107,9 @@ export const projects = {
                 'Upload to ViciDial via its API',
                 'Export summary to Excel for reporting or audit',
                 'Notify stakeholders via email',
+                'Able to implement the pipeline to new country easily'
             ],
             features: [
-                'Multiple campaigns per region (TH, ID, MY, PH)',
                 'Grouped call frequency rules to avoid duplicate uploads',
                 'Dry-run and upload mode toggle',
                 'Feedback loop comparing output with live ViciDial data',
@@ -163,7 +145,7 @@ export const projects = {
             slug: 'ordering-management-system',
             template: 'etl',
             highlight: false,
-            title: 'Ordering Management System',
+            title: 'Ordering Management System - University Project',
             description:
                 'A modern ordering management system enhancing customer experience and backend efficiency, with self-service ordering, transparent tracking, and analytics dashboards.',
             tags: ['Web Development', 'Laravel', 'Vue', 'QR Code', 'TypeScript'],
