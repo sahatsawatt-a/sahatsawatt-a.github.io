@@ -1,19 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { defineProps } from 'vue'
 import { RouterLink } from 'vue-router'
-
-interface Project {
-  slug: string
-  template: string
-  highlight: boolean
-  title: string
-  description: string
-  tags: string[]
-}
+import type { Project } from '@/data/index'
 
 const props = defineProps<{
-  projects?: Project[] // optional, default to empty array
+  projects?: Project[]
   limit?: number
 }>()
 

@@ -1,1 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "flowbite/src/themes/default";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @import "tailwindcss";
+
+@plugin "flowbite/plugin";
+
+@source "../node_modules/flowbite";
+
+.dark {
+  --color-fg-brand-strong: #f87171;   /* red text/icon */
+  --color-brand-softer: #3a2828;      /* keep deep blue background */
+  --color-brand-subtle: #fca5a5;      /* soft red border */
+}

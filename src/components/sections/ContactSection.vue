@@ -1,36 +1,24 @@
 <!-- src/components/sections/ContactSection.vue -->
-<script setup>
-import { contact } from '../../data/profile'
+<script setup lang="ts">
+import { contact } from '@/data/index'
 </script>
 
 <template>
   <section id="contact" class="space-y-6">
-    <h2 class="text-xl md:text-2xl font-semibold tracking-tight">
-      {{ contact.title }}
-    </h2>
+    <h2 class="text-xl md:text-2xl font-semibold tracking-tight">Contact</h2>
 
     <p class="text-sm md:text-base text-slate-700 dark:text-slate-200 max-w-xl">
       {{ contact.intro }}
     </p>
 
     <div class="space-y-2 text-sm text-slate-700 dark:text-slate-200">
-      <p>
-        {{ contact.email.label }}:
-        <a :href="`mailto:${contact.email.value}`"
+      <p v-for="link in contact.links" :key="link.label">
+        {{ link.label }}:
+        <a :href="link.url" target="_blank"
           class="text-[#FF2D20] hover:text-[#ff543e] underline underline-offset-4">
-          {{ contact.email.value }}
+          {{ link.value }}
         </a>
       </p>
-
-      <!-- Only show GitHub row if GitHub data exists -->
-      <p v-if="contact.github?.url && contact.github?.handle">
-        {{ contact.github.label }}:
-        <a :href="contact.github.url" target="_blank"
-          class="text-[#FF2D20] hover:text-[#ff543e] underline underline-offset-4">
-          {{ contact.github.handle }}
-        </a>
-      </p>
-
     </div>
   </section>
 </template>

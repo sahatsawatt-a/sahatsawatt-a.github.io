@@ -1,6 +1,6 @@
 <!-- src/components/sections/AboutSection.vue -->
 <script setup>
-import { about } from '../../data/profile'
+import { about } from '@/data/index'
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import { about } from '../../data/profile'
       {{ about.title }}
     </h2>
 
-    <div class="grid gap-8 md:grid-cols-[1.5fr,1fr] text-sm md:text-base text-slate-300">
+    <div class="text-sm md:text-base">
       <p class="text-slate-700 dark:text-slate-200">
         <span
           v-for="(paragraph, idx) in about.body"

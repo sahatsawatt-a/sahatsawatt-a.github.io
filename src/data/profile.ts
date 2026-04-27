@@ -3,17 +3,20 @@
 export const header = {
     initials: 'SA',
     name: 'Sahatsawatt Anankatham (Guy)',
-    tagline: 'System Analyst · Integrations · Automation',
+    profileImage: '/profile_pic.jpg',
+    tagline: 'Agentic AI · Automation Workflow',
 };
 
 export const hero = {
-    status: 'Open for new opportunity',
+    
+    status: 'Currently building Agentic AI Workflow',
     profileImage: '/profile_pic.jpg',
     heroTitle: {
-        full: "A system analyst with hands-on programming and automation skills",
-        highlight: ["system analyst", "programming", "automation"]
+        full: "Designs systems and builds Automation and Agentic AI.",
+        highlight: ["Systems", "Automation", "Agentic AI"]
     },
     description: 'I improve system workflows through automation, integration design, and a deep understanding of how systems behave in real environments.',
+
     coreFocus: 'System analysis · Integrations · Automation · ETL',
     tooling: 'Laravel · Vue 3 · PostgreSQL · Docker · n8n · Airflow',
     quickProfile: {

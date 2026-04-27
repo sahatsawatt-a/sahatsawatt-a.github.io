@@ -1,6 +1,6 @@
 <!-- src/components/sections/SkillsSection.vue -->
 <script setup>
-import { skills } from '../../data/profile'
+import { skills } from '@/data/index'
 </script>
 
 <template>
@@ -11,9 +11,7 @@ import { skills } from '../../data/profile'
 
     <div class="grid md:grid-cols-3 gap-8 text-slate-300 text-sm">
       <div class="space-y-3">
-        <p class="text-slate-500 font-medium text-xs uppercase tracking-[0.2em]">
-          {{ skills.coreTitle }}
-        </p>
+        <p class="text-slate-500 font-medium text-xs uppercase tracking-[0.2em]">Core Skills</p>
         <ul class="space-y-1.5 text-slate-700 dark:text-slate-200">
           <li
             v-for="item in skills.core"
@@ -27,9 +25,7 @@ import { skills } from '../../data/profile'
       </div>
 
       <div class="space-y-3">
-        <p class="text-slate-500 font-medium text-xs uppercase tracking-[0.2em]">
-          {{ skills.technicalTitle }}
-        </p>
+        <p class="text-slate-500 font-medium text-xs uppercase tracking-[0.2em]">Technical</p>
         <ul class="space-y-1.5 text-slate-700 dark:text-slate-200">
           <li
             v-for="item in skills.technical"
@@ -43,9 +39,7 @@ import { skills } from '../../data/profile'
       </div>
 
       <div class="space-y-3">
-        <p class="text-slate-500 font-medium text-xs uppercase tracking-[0.2em]">
-          {{ skills.interestsTitle }}
-        </p>
+        <p class="text-slate-500 font-medium text-xs uppercase tracking-[0.2em]">Interests</p>
         <ul class="space-y-1.5 text-slate-700 dark:text-slate-200">
           <li
             v-for="item in skills.interests"

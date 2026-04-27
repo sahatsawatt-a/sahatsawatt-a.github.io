@@ -1,88 +1,152 @@
-<script setup>
-import { useRouter } from 'vue-router'
+<script setup lang="ts">
+import type { Project } from '@/data/index'
+import { experiences } from '@/data/index'
 
-const props = defineProps({
-    project: {
-        type: Object,
-        required: true,
-    },
-})
+const props = defineProps<{ project: Project }>()
 
-const router = useRouter()
+const company = props.project.exp_id
+  ? experiences.find(e => e.exp_id === props.project.exp_id)
+  : null
 </script>
 
 <template>
-    <section class="space-y-10">
-        <RouterLink to="/projects"
-  class="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-slate-900/80 text-sm text-[#FF2D20] font-medium shadow-sm transition hover:bg-[#FF2D20]/10 hover:text-[#FF543E] mb-5">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-      stroke="currentColor" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-  </svg>
-  Back to Project Lists
-</RouterLink>
+  <div class="space-y-12">
 
+    <!-- BACK -->
+    <RouterLink
+      to="/projects"
+      class="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-100 transition"
+    >
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+      Projects
+    </RouterLink>
 
-        <!-- HEADER -->
-        <header>
-            <h1 class="text-3xl font-semibold text-slate-50">
-                {{ props.project.title }}
-            </h1>
-            <p class="text-slate-400 mt-2 text-sm md:text-base">
-                {{ props.project.description }}
-            </p>
+    <!-- HEADER -->
+    <header class="space-y-5 pb-8 border-b border-slate-800">
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <h1 class="text-3xl md:text-4xl font-semibold text-slate-50 tracking-tight">
+          {{ props.project.title }}
+        </h1>
+        <span
+          v-if="company"
+          class="shrink-0 text-xs font-medium px-3 py-1 rounded-full border border-slate-700 text-slate-300"
+        >
+          {{ company.role }} · {{ company.company }}
+        </span>
+      </div>
 
-            <div class="flex flex-wrap gap-2 text-xs text-slate-300 mt-4">
-                <span v-for="tag in props.project.tags" :key="tag"
-                    class="px-2.5 py-1 rounded-full border border-slate-700">
-                    {{ tag }}
-                </span>
-            </div>
-        </header>
+      <p class="text-slate-400 text-base md:text-lg max-w-2xl leading-relaxed">
+        {{ props.project.description }}
+      </p>
 
-        <!-- IMAGE -->
-        <div v-if="props.project.img"
-            class="max-w-2xl mx-auto rounded-xl overflow-hidden border border-slate-800 shadow-lg">
-            <img :src="props.project.img" :alt="props.project.title" class="w-full object-contain" />
+      <div class="flex flex-wrap gap-6 pt-1">
+        <div v-if="props.project.tags.length" class="space-y-1.5">
+          <p class="text-2xs font-medium uppercase tracking-widest text-slate-500">Stack</p>
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-for="tag in props.project.tags" :key="tag"
+              class="text-xs px-2.5 py-1 rounded-full border border-slate-700 text-slate-300"
+            >{{ tag }}</span>
+          </div>
         </div>
+        <div v-if="props.project.prog_langs.length" class="space-y-1.5">
+          <p class="text-2xs font-medium uppercase tracking-widest text-slate-500">Languages</p>
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-for="lang in props.project.prog_langs" :key="lang"
+              class="text-xs px-2.5 py-1 rounded-full border border-slate-700 text-slate-300"
+            >{{ lang }}</span>
+          </div>
+        </div>
+        <div v-if="props.project.tools.length" class="space-y-1.5">
+          <p class="text-2xs font-medium uppercase tracking-widest text-slate-500">Tools</p>
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-for="tool in props.project.tools" :key="tool"
+              class="text-xs px-2.5 py-1 rounded-full border border-slate-700 text-slate-300"
+            >{{ tool }}</span>
+          </div>
+        </div>
+      </div>
+    </header>
 
-        <!-- PURPOSE -->
-        <section v-if="props.project.purpose?.length" class="space-y-3">
-            <h2 class="text-xl font-medium text-slate-100">🎯 Purpose</h2>
-            <ul class="list-disc list-inside text-slate-300 space-y-1">
-                <li v-for="item in props.project.purpose" :key="item">
-                    {{ item }}
-                </li>
-            </ul>
-        </section>
-
-        <!-- PACKAGE -->
-        <section v-if="props.project.package?.length" class="space-y-3">
-            <h2 class="text-xl font-medium text-slate-100">📦 Package Used</h2>
-            <div class="flex flex-wrap gap-2">
-                <span v-for="item in props.project.package" :key="item"
-                    class="px-3 py-1.5 rounded-lg bg-slate-800/60 border border-slate-700 text-slate-200 text-sm shadow-sm">
-                    {{ item }}
-                </span>
-            </div>
-        </section>
-
-        <!-- FEATURES -->
-        <section v-if="props.project.features?.length" class="space-y-3">
-            <h2 class="text-xl font-medium text-slate-100">📌 Features</h2>
-            <ul class="list-disc list-inside text-slate-300 space-y-1">
-                <li v-for="item in props.project.features" :key="item">
-                    {{ item }}
-                </li>
-            </ul>
-        </section>
-
-        <!-- FEEDBACK -->
-        <section v-if="props.project.feedback" class="space-y-3">
-            <h2 class="text-xl font-medium text-slate-100">🌟 Feedback</h2>
-            <blockquote class="text-slate-300 italic border-l-4 border-[#FF2D20] pl-4">
-                “{{ props.project.feedback }}”
-            </blockquote>
-        </section>
+    <!-- IMPACT -->
+    <section v-if="props.project.impact?.length" class="space-y-4">
+      <p class="text-2xs font-medium uppercase tracking-widest text-slate-500">Impact</p>
+      <div class="grid gap-3 sm:grid-cols-3">
+        <div
+          v-for="item in props.project.impact" :key="item"
+          class="rounded-xl border border-slate-800 bg-slate-900/50 p-4 text-sm text-slate-300 leading-snug"
+        >
+          <span class="text-[#FF2D20] font-bold mr-2">—</span>{{ item }}
+        </div>
+      </div>
     </section>
+
+    <!-- IMAGE -->
+    <div
+      v-if="props.project.img"
+      class="rounded-xl overflow-hidden border border-slate-800"
+    >
+      <img :src="props.project.img" :alt="props.project.title" class="w-full object-contain" />
+    </div>
+
+    <!-- PURPOSE + FEATURES -->
+    <div
+      v-if="props.project.purpose?.length || props.project.features?.length"
+      class="grid gap-8 md:grid-cols-2"
+    >
+      <section v-if="props.project.purpose?.length" class="space-y-4">
+        <p class="text-2xs font-medium uppercase tracking-widest text-slate-500">Purpose</p>
+        <ul class="space-y-2.5">
+          <li
+            v-for="item in props.project.purpose" :key="item"
+            class="flex gap-2.5 text-sm text-slate-300"
+          >
+            <svg class="w-4 h-4 mt-0.5 shrink-0 text-[#FF2D20]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            {{ item }}
+          </li>
+        </ul>
+      </section>
+
+      <section v-if="props.project.features?.length" class="space-y-4">
+        <p class="text-2xs font-medium uppercase tracking-widest text-slate-500">Features</p>
+        <ul class="space-y-2.5">
+          <li
+            v-for="item in props.project.features" :key="item"
+            class="flex gap-2.5 text-sm text-slate-300"
+          >
+            <svg class="w-4 h-4 mt-0.5 shrink-0 text-[#FF2D20]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            {{ item }}
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- PACKAGES -->
+    <section v-if="props.project.packages?.length" class="space-y-4">
+      <p class="text-2xs font-medium uppercase tracking-widest text-slate-500">Packages</p>
+      <div class="flex flex-wrap gap-2">
+        <span
+          v-for="pkg in props.project.packages" :key="pkg"
+          class="font-mono text-sm px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-200"
+        >{{ pkg }}</span>
+      </div>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section v-if="props.project.feedback" class="space-y-4">
+      <p class="text-2xs font-medium uppercase tracking-widest text-slate-500">Feedback</p>
+      <blockquote class="border-l-2 border-[#FF2D20] pl-5 text-slate-300 italic text-base leading-relaxed">
+        "{{ props.project.feedback }}"
+      </blockquote>
+    </section>
+
+  </div>
 </template>

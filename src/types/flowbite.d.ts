@@ -1,0 +1,1 @@
+src/types/flowbite.d.ts

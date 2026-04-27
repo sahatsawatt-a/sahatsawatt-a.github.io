@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ProjectList from '../components/project/ProjectList.vue'
-import { projects } from '../data/profile' // import the full projects list
+import { projects } from '@/data/index'
 </script>
 
 <template>
@@ -20,6 +20,6 @@ import { projects } from '../data/profile' // import the full projects list
     </h1>
 
     <!-- Pass the full list of projects -->
-    <ProjectList :projects="projects.items" />
+    <ProjectList :projects="projects" />
   </section>
 </template>

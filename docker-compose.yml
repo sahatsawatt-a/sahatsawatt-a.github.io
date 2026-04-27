@@ -1,12 +1,11 @@
 services:
-  # 1) INIT: for installing deps, or running one-off setup commands
+  # 1) INIT: install dependencies
   init:
     build: .
     container_name: vue-init
     working_dir: /app
     volumes:
       - .:/app
-      - /app/node_modules
     command: ["npm", "install"]
 
   # 2) DEV: run Vite dev server
@@ -21,9 +20,17 @@ services:
       - "5173:5173"
     environment:
       VITE_BASE: "/"
+      VITE_HOST: "port.skye.pc"
     command: ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
+    networks:
+      - traefik_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.skye-portfolio.rule=Host(`port.skye.pc`)"
+      - "traefik.http.routers.skye-portfolio.entrypoints=websecure"
+      - "traefik.http.services.skye-portfolio.loadbalancer.server.port=5173"
 
-  # 3) BUILD + DEPLOY: build for GitHub Pages and run deploy script
+  # 3) BUILD: build for GitHub Pages
   build:
     build: .
     container_name: vue-build
@@ -34,3 +41,7 @@ services:
     environment:
       VITE_BASE: "/"
     command: ["sh", "-c", "npm run build"]
+
+networks:
+  traefik_proxy:
+    external: true
