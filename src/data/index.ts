@@ -16,8 +16,11 @@ export interface HeroTitle {
 }
 
 export interface QuickCard {
+  icon: string
   label: string
   value: string
+  /** Tailwind gradient classes for the icon tile (e.g. 'from-violet-400/40 to-sky-400/40'). */
+  accent: string
 }
 
 export interface SkillItem {
@@ -34,14 +37,14 @@ export interface Experience {
   /** DD/MM/YYYY — empty string means Present */
   end_date: string
   summary: string[]
+  /** Internal tools / services built during this role. Rendered as flat chips on /experience. */
+  tools_built?: string[]
 }
 
 export interface Project {
   proj_id: number
   /** URL slug for the detail page route */
   slug: string
-  /** Selects which detail template to render */
-  template: 'etl' | 'default'
   /** Show in the homepage highlight grid */
   highlight: boolean
   title: string
@@ -77,8 +80,8 @@ export const info = {
 
 export const hero = {
   status: {
-    state: 'closed',
-    message: 'Currently building Agentic AI Workflow',
+    state: 'open',
+    message: 'Open to work · Currently building Agentic AI Workflow',
   } as HeroStatus,
   heroTitle: {
     full: 'Designs systems and builds Automation and Agentic AI.',
@@ -87,19 +90,40 @@ export const hero = {
   description:
     'I improve system workflows through automation, integration design, and a deep understanding of how systems behave in real environments.',
   quickCards: [
-    { label: 'Core', value: 'System Analysis · Integrations' },
-    { label: 'Automation', value: 'n8n · Airflow · ETL' },
-    { label: 'Tech', value: 'Laravel · Vue · Python' },
-    { label: 'Data', value: 'PostgreSQL · MySQL' },
+    {
+      icon: '🧠',
+      label: 'Core',
+      value: 'ML/CV · System Analysis',
+      accent: 'from-emerald-400/40 to-teal-400/40',
+    },
+    {
+      icon: '👁️',
+      label: 'Vision',
+      value: 'YOLO · DINOv2 · OCR',
+      accent: 'from-violet-400/40 to-fuchsia-400/40',
+    },
+    {
+      icon: '⚙️',
+      label: 'Stack',
+      value: 'Python · FastAPI · Vue 3',
+      accent: 'from-sky-400/40 to-blue-400/40',
+    },
+    {
+      icon: '🗄️',
+      label: 'Data',
+      value: 'Milvus · PostgreSQL',
+      accent: 'from-amber-400/40 to-orange-400/40',
+    },
   ] as QuickCard[],
 }
 
 export const about = {
   title: "About Me",
   body: [
-    `I'm a system analyst who thrives on breaking down complex requirements, clarifying vague problems, and translating them into structured, workable inputs for engineering teams. I focus on understanding system behavior, data flow, and where integrations typically fail under real-world conditions.`,
-    `I analyze existing systems, generate practical integration ideas, and translate API documentation into clear, developer-friendly explanations that help engineers build solutions faster and with fewer misunderstandings.`,
-    `When issues surface, I act as the first line of technical investigation by reproducing client-side problems, isolating root causes, and escalating only validated backend concerns. In parallel, I continuously explore new technologies and I am currently learning to deploy local AI models and build agentic AI to enhance my workflow and automation capabilities.`,
+    `I build automation pipelines around ML and computer vision models. I take research tools like YOLO detectors, DINOv2 embeddings, and OCR engines and turn them into FastAPI services, CLI tools, and Docker-based pipelines that other teams can use directly in their own workflows.`,
+    `I started my career as a system analyst, so I think about ML systems the same way I think about any integration. Where does the data come from? Where can it break? What is the fallback when a model is not confident? This way of thinking shapes every pipeline I build. Most of the time, I prefer multi-strategy approaches (for example, embedded extraction first, then YOLO detection, then Hough-Circle as a fallback) instead of relying on only one model.`,
+    `I also test and verify the data at every step of a pipeline. A model running without error does not always mean the output is correct, so I check the results against expected behaviour before passing them on. This way, other teams can rely on the data without having to clean or debug it first.`,
+    `Right now, my main focus is visual retrieval and document understanding. I combine DINOv2 embeddings with CIE L*a*b* colour histograms to do material-aware image similarity, set up Thai-aware OCR stacks (Tesseract, EasyOCR, and Typhoon), and package everything as microservices. At the same time, I am also exploring agentic AI patterns so these pipelines can run by themselves instead of waiting for an orchestrator.`,
   ],
 }
 
@@ -117,9 +141,15 @@ export const skills = {
     { icon: '🖥️', label: 'Laravel · PHP' },
     { icon: '🎨', label: 'Vue 3 · Vite' },
     { icon: '🐍', label: 'Python' },
+    { icon: '🔥', label: 'PyTorch' },
+    { icon: '⚡', label: 'FastAPI' },
     { icon: '🗃️', label: 'PostgreSQL · MySQL' },
     { icon: '🐳', label: 'Docker · Traefik' },
     { icon: '🔄', label: 'n8n · Airflow' },
+    { icon: '🎯', label: 'YOLO' },
+    { icon: '🧬', label: 'DINOv2 · Milvus' },
+    { icon: '👁️', label: 'OpenCV' },
+    { icon: '📝', label: 'EasyOCR · Tesseract · Typhoon OCR' },
     { icon: '🤖', label: 'Ollama' },
   ] as SkillItem[],
   interests: [
@@ -138,7 +168,18 @@ export const experiences: Experience[] = [
     company: 'Avalant',
     start_date: '16/03/2026',
     end_date: '',
-    summary: [],
+    summary: [
+      'Engaged as a consultant and expanded into hands-on implementation across multiple projects, designing automation pipelines that bring ML/CV models into production workflows.',
+      'Build a Thai-aware PDF text extraction pipeline combining pdftotext with a Tesseract OCR fallback (high-DPI rasterisation, quality scoring, character-encoding repair) to handle both digital and scanned documents.',
+      'Implement multi-strategy image extraction from PDFs — lossless embedded extraction (PyMuPDF), YOLO detection on rendered pages, and Hough-Circle fallback — with regex-driven metadata parsing from structured page text.',
+      'Develop image-similarity retrieval that blends DINOv2 768-d embeddings (Milvus Lite vector store) with a CIE L*a*b* colour histogram so visually-identical items in different materials remain separable; serve DINOv2 (CLS embeddings, cosine similarity, attention-map viz) and YOLO behind FastAPI.',
+      'Stand up OCR services — EasyOCR (CRAFT detector + CRNN recogniser) and Tesseract for general extraction, plus Typhoon OCR (Thai-tuned API by SCB) for high-accuracy Thai text — delivered behind FastAPI and CLI interfaces.',
+    ],
+    tools_built: [
+      'pdf_extractor',
+      'coin_extractor',
+      'image_similarity_search',
+    ],
   },
   {
     exp_id: 1,
@@ -151,15 +192,57 @@ export const experiences: Experience[] = [
       'Perform end-to-end issue analysis using deductive reasoning and hypothesis testing with infrastructure and engineering teams to resolve production and customer-facing issues.',
       'Build automation workflows using n8n, Apache Airflow and bash script to reduce manual operations and improve response time.',
       'Develop ETL pipelines for the debt collection team to improve data accuracy, reduce support investigation time, and enable 100% outreach to clients with outstanding debt.',
+      'Own day-to-day ViciDial platform work — encode complex configuration into guided forms and self-service tools so non-technical teams can run routine setup without pulling in engineering.',
+      'Lead multi-country rollout of the lead-automation pipeline, parameterising business rules so the same Airflow DAGs served regional debt-collection teams under different jurisdictions.',
+      'Ship every production change with dry-run mode, audit-ready Excel exports, and a feedback loop that reconciled pipeline output against the live system, so silent drift was caught before it reached campaigns.',
     ],
   },
 ]
 
 export const projects: Project[] = [
   {
+    proj_id: 4,
+    slug: 'document-image-kb-embedding',
+    highlight: true,
+    title: 'Document & Image Extraction for Knowledge Base Embedding',
+    description:
+      'A microservice pipeline that extracts structured text and visual content from PDFs and prepares them as embeddings for retrieval-augmented knowledge bases, feeding downstream LLM and agentic-AI workflows.',
+    tags: ['Python', 'PyTorch', 'YOLO', 'DINOv2', 'Milvus', 'OCR'],
+    tools: ['FastAPI', 'Docker', 'PyMuPDF', 'OpenCV'],
+    prog_langs: ['Python'],
+    exp_id: 2,
+
+    impact: [
+      'Replaced manual transcription with a single API call',
+      'Produces LLM-ready knowledge bases combining structured fields, raw text, and visual references',
+      'Material-aware similarity surfaces near-duplicates that pure embeddings miss',
+    ],
+
+    purpose: [
+      'Turn mixed digital and scanned PDFs into structured, queryable data',
+      'Extract images alongside their surrounding text context for downstream RAG',
+      'Provide visual similarity search so users can find by example, not just keyword',
+      'Package extraction, embedding, and retrieval as composable HTTP services',
+    ],
+
+    features: [
+      'Multi-strategy PDF extraction — lossless embedded images (PyMuPDF), YOLO detection on rendered pages, and Hough-Circle fallback for untrained domains.',
+      'PDF-type auto-detection picks the right strategy (digital vs. scanned vs. unknown) without user input.',
+      'Image-similarity retrieval blending DINOv2 768-d embeddings (Milvus Lite) with CIE L*a*b* colour histograms so visually-identical items in different materials remain separable.',
+      'Thai-aware OCR triad — pdftotext + Tesseract for fast digital extraction, EasyOCR (CRAFT + CRNN) for general use, Typhoon OCR (Thai-tuned LLM API) for high-accuracy Thai.',
+      'Regex-driven metadata parsing (dimensions, weight, year, reference codes) from structured page text; mapped per-image when table-column count matches image count.',
+      'All services exposed as FastAPI endpoints behind Docker Compose with shared volumes and health checks.',
+    ],
+
+    packages: ['PyMuPDF', 'opencv-python', 'ultralytics', 'transformers', 'pymilvus', 'easyocr', 'pytesseract', 'typhoon-ocr', 'fastapi'],
+
+    feedback:
+      'Turned manual data entry into a self-serve extraction + embedding pipeline that downstream teams can query for both text and visual matches.',
+  },
+
+  {
     proj_id: 1,
     slug: 'etl-lead-automation',
-    template: 'etl',
     highlight: true,
     title: 'ETL Lead Automation',
     description:
@@ -200,7 +283,6 @@ export const projects: Project[] = [
   {
     proj_id: 2,
     slug: 'internal-automation-tools',
-    template: 'etl',
     highlight: true,
     title: 'Internal Automation Tools',
     description:
@@ -234,7 +316,6 @@ export const projects: Project[] = [
   {
     proj_id: 3,
     slug: 'restaurant-ordering-system',
-    template: 'default',
     highlight: false,
     title: 'Restaurant Ordering System',
     description:

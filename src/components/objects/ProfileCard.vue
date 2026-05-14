@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { info } from "@/data/index"
-import ProfileImage from "@/components/ui/ProfileImage.vue"
+import { info } from '@/data/index'
 
 defineProps<{
   onClick?: () => void
@@ -8,18 +7,25 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex items-center gap-3">
-    <div class="shrink-0 cursor-pointer" @click="onClick">
-      <ProfileImage
-        class="flex size-13 items-center justify-center rounded-2xl bg-white/80 shadow-md ring-1 ring-slate-200/60 backdrop-blur dark:bg-slate-900/70 dark:ring-slate-700/80 hover:shadow-red-700 "
-      />
-    </div>
+  <div
+    class="glass gradient-border lift flex items-center gap-3 rounded-2xl p-3"
+    :class="onClick ? 'cursor-pointer' : ''"
+    @click="onClick?.()"
+  >
+    <span
+      class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-violet-400/40 via-fuchsia-400/30 to-sky-400/40 text-base font-semibold ring-1 ring-inset ring-white/30"
+      aria-hidden="true"
+    >
+      {{ info.initials }}
+    </span>
 
-    <div class="space-y-0.5">
-      <p class="text-sm font-medium tracking-[0.2em] text-slate-600 dark:text-slate-300">
-        {{ info.full_name }} ({{ info.nickname }})
+    <div class="leading-tight">
+      <p class="text-sm font-semibold">
+        {{ info.full_name }}
+        <span class="text-slate-500 dark:text-slate-400">
+          ({{ info.nickname }})
+        </span>
       </p>
-
       <p class="text-xs text-slate-500 dark:text-slate-400">
         {{ info.tagline }}
       </p>

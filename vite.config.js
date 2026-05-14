@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
+const VITE_HOST = process.env.VITE_HOST || 'localhost'
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), tailwindcss(),],
@@ -10,14 +12,15 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 5173,
     strictPort: true,
-    allowedHosts: ["port.skye.pc"],
+    allowedHosts: [VITE_HOST],
     watch: {
       usePolling: true,  // Docker-friendly file watching
       interval: 100,
     },
     hmr: {
-      host: "port.skye.pc",
-      port: 5173,
+      host: VITE_HOST,
+      protocol: 'wss',
+      clientPort: 443,
     },
   },
   base: "/",

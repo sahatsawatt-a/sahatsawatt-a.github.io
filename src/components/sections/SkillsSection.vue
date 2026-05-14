@@ -1,55 +1,32 @@
-<!-- src/components/sections/SkillsSection.vue -->
-<script setup>
-import { skills } from '@/data/index'
+<script setup lang="ts">
+import { skills, type SkillItem } from '@/data/index'
+
+const groups: { title: string; items: SkillItem[] }[] = [
+  { title: 'Core', items: skills.core },
+  { title: 'Technical', items: skills.technical },
+  { title: 'Interests', items: skills.interests },
+]
 </script>
 
 <template>
-  <section id="skills" class="space-y-6">
-    <h2 class="text-xl md:text-2xl font-semibold tracking-tight">
-      Skills
-    </h2>
-
-    <div class="grid md:grid-cols-3 gap-8 text-slate-300 text-sm">
-      <div class="space-y-3">
-        <p class="text-slate-500 font-medium text-xs uppercase tracking-[0.2em]">Core Skills</p>
-        <ul class="space-y-1.5 text-slate-700 dark:text-slate-200">
-          <li
-            v-for="item in skills.core"
-            :key="item.label"
-            class="flex items-center gap-2"
-          >
-            <span aria-hidden="true">{{ item.icon }}</span>
-            <span>{{ item.label }}</span>
-          </li>
-        </ul>
+  <section id="skills" class="reveal">
+    <div class="glass gradient-border lift relative overflow-hidden rounded-3xl p-6 md:p-8">
+      <div class="mb-5 flex items-center justify-between">
+        <h2 class="text-lg font-semibold tracking-tight">Skills</h2>
+        <span class="font-mono text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">skills.ts</span>
       </div>
 
-      <div class="space-y-3">
-        <p class="text-slate-500 font-medium text-xs uppercase tracking-[0.2em]">Technical</p>
-        <ul class="space-y-1.5 text-slate-700 dark:text-slate-200">
-          <li
-            v-for="item in skills.technical"
-            :key="item.label"
-            class="flex items-center gap-2"
-          >
-            <span aria-hidden="true">{{ item.icon }}</span>
-            <span>{{ item.label }}</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="space-y-3">
-        <p class="text-slate-500 font-medium text-xs uppercase tracking-[0.2em]">Interests</p>
-        <ul class="space-y-1.5 text-slate-700 dark:text-slate-200">
-          <li
-            v-for="item in skills.interests"
-            :key="item.label"
-            class="flex items-center gap-2"
-          >
-            <span aria-hidden="true">{{ item.icon }}</span>
-            <span>{{ item.label }}</span>
-          </li>
-        </ul>
+      <div class="space-y-5">
+        <div v-for="group in groups" :key="group.title">
+          <div class="mb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+            {{ group.title }}
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span v-for="item in group.items" :key="item.label" class="skill-chip">
+              {{ item.icon }} {{ item.label }}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </section>

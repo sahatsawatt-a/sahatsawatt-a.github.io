@@ -1,13 +1,14 @@
-<!-- src/App.vue -->
-<script setup>
+<script setup lang="ts">
 import MainLayout from './layouts/MainLayout.vue'
 import { RouterView } from 'vue-router'
 import { onMounted } from 'vue'
 import { initFlowbite } from 'flowbite'
+import { useReveal } from './composables/useReveal'
 
-// initialize components based on data attribute selectors
+useReveal()
+
 onMounted(() => {
-    initFlowbite();
+  initFlowbite()
 })
 </script>
 

@@ -20,14 +20,15 @@ services:
       - "5173:5173"
     environment:
       VITE_BASE: "/"
-      VITE_HOST: "port.skye.pc"
+      VITE_HOST: "${PUBLIC_HOST}"
     command: ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
     networks:
-      - traefik_proxy
+      - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.skye-portfolio.rule=Host(`port.skye.pc`)"
+      - "traefik.http.routers.skye-portfolio.rule=Host(`${PUBLIC_HOST}`)"
       - "traefik.http.routers.skye-portfolio.entrypoints=websecure"
+      - "traefik.http.routers.skye-portfolio.tls=true"
       - "traefik.http.services.skye-portfolio.loadbalancer.server.port=5173"
 
   # 3) BUILD: build for GitHub Pages
@@ -43,5 +44,5 @@ services:
     command: ["sh", "-c", "npm run build"]
 
 networks:
-  traefik_proxy:
+  traefik:
     external: true

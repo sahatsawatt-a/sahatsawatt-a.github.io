@@ -1,97 +1,78 @@
 <script setup lang="ts">
-import { experiences } from "@/data/index";
-import { formatDate, diffDate } from "@/utils/date";
+import { experiences, type Experience } from '@/data/index'
+import { formatDate, diffDate } from '@/utils/date'
 
-const maxId = Math.max(...experiences.map((e) => e.exp_id));
+const sorted: Experience[] = [...experiences].sort((a, b) => {
+  if (a.end_date === '' && b.end_date !== '') return -1
+  if (b.end_date === '' && a.end_date !== '') return 1
+  return b.exp_id - a.exp_id
+})
+
+const isLatest = (exp: Experience): boolean => exp === sorted[0]
 </script>
 
 <template>
-  <section>
-    <ol class="relative border-s border-default">
-      <li v-for="(item, i) in experiences" :key="i" class="mb-10 ms-6">
+  <section class="reveal">
+    <div
+      class="glass gradient-border lift relative overflow-hidden rounded-3xl p-6 md:p-8"
+    >
+      <div class="mb-6 flex items-center justify-between">
+        <h2 class="text-lg font-semibold tracking-tight">Experience</h2>
         <span
-          class="absolute flex items-center justify-center w-6 h-6 bg-brand-softer rounded-full -start-3 ring-8 ring-buffer"
+          class="font-mono text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400"
+          >timeline.ts</span
         >
-          <svg
-            class="w-3 h-3 text-fg-brand-strong"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"
-            />
-          </svg>
-        </span>
-        <div class="flex items-center gap-2 text-xs">
-          <time
-            class="bg-neutral-secondary-medium border border-default-medium text-heading font-medium px-1.5 py-0.5 rounded"
-            v-html="formatDate(item.start_date)"
-          ></time>
+      </div>
 
-          <span class="text-body">—</span>
-
-          <time
-            class="bg-neutral-secondary-medium border border-default-medium text-heading font-medium px-1.5 py-0.5 rounded"
-            v-html="formatDate(item.end_date)"
-          ></time>
-          <span class="text-body text-xs opacity-70">
-            · {{ diffDate(item.start_date, item.end_date) }}
-          </span>
-        </div>
-        <h3
-          class="flex items-center mb-1 text-lg font-semibold text-heading my-2"
-        >
-          {{ item.role }}
+      <ol
+        class="relative space-y-6 border-l border-slate-900/10 pl-6 dark:border-white/10"
+      >
+        <li v-for="exp in sorted" :key="exp.exp_id" class="relative">
           <span
-            v-if="Number(item.exp_id) === maxId"
-            class="ms-2 bg-brand-softer border border-brand-subtle text-fg-brand-strong text-xs font-medium px-1.5 py-0.5 rounded"
+            v-if="isLatest(exp)"
+            class="pulse absolute -left-[34px] top-1.5 grid h-4 w-4 place-items-center rounded-full bg-emerald-400 ring-4 ring-emerald-400/20 dark:ring-emerald-400/10"
+          ></span>
+          <span
+            v-else
+            class="absolute -left-[30px] top-1.5 h-3 w-3 rounded-full bg-slate-400/60 ring-4 ring-slate-400/10"
+          ></span>
+
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            <h3 class="text-base font-semibold">{{ exp.role }}</h3>
+            <span
+              class="font-mono text-xs text-slate-500 dark:text-slate-400"
+            >
+              {{ formatDate(exp.start_date) }} —
+              {{ formatDate(exp.end_date) }} ·
+              {{ diffDate(exp.start_date, exp.end_date || undefined) }}
+            </span>
+          </div>
+
+          <div class="text-sm text-slate-600 dark:text-slate-300">
+            {{ exp.company }}
+          </div>
+
+          <span
+            v-if="isLatest(exp)"
+            class="mt-2 inline-block rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-300"
+            >latest</span
           >
-            Latest
-          </span>
-        </h3>
-        <h4 class="text-body">{{ item.company }}</h4>
-        <ul
-          class="mb-4 list-disc ms-5 text-body space-y-1 text-sm"
-        >
-          <li v-for="(point, i) in item.summary" :key="i">
-            {{ point }}
-          </li>
-        </ul>
-        <!--         
-        <a
-          href="#"
-          class="inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
-        >
-          <svg
-            class="w-4 h-4 me-1.5 -ms-0.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
+
+          <ul
+            v-if="exp.summary.length"
+            class="mt-3 space-y-1.5 text-sm text-slate-600 dark:text-slate-300"
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-width="2"
-              d="M10 3v4a1 1 0 0 1-1 1H5m14-4v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Zm-4 1h.01v.01H15V5Zm-2 2h.01v.01H13V7Zm2 2h.01v.01H15V9Zm-2 2h.01v.01H13V11Zm2 2h.01v.01H15V13Zm-2 2h.01v.01H13V15Zm2 2h.01v.01H15V17Zm-2 2h.01v.01H13V19Z"
-            />
-          </svg>
-          Download ZIP
-        </a> 
-        -->
-      </li>
-    </ol>
+            <li
+              v-for="(bullet, i) in exp.summary"
+              :key="i"
+              class="flex gap-2"
+            >
+              <span class="text-emerald-500">▸</span>
+              <span>{{ bullet }}</span>
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
   </section>
 </template>
-
-<style></style>
