@@ -10,6 +10,7 @@ const navItems = [
   { label: 'About', to: '/about' },
   { label: 'Experience', to: '/experience' },
   { label: 'Skills', to: '/skills' },
+  { label: 'Resume', to: '/resume' },
   { label: 'Contact', to: '/contact' },
 ]
 </script>
@@ -20,9 +21,15 @@ const navItems = [
   >
     <RouterLink to="/" class="flex items-center gap-3">
       <span
-        class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-violet-400/30 to-sky-400/30 text-sm font-bold tracking-tight ring-1 ring-inset ring-white/20"
+        class="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-violet-400/30 to-sky-400/30 text-sm font-bold tracking-tight ring-1 ring-inset ring-white/20"
       >
-        {{ info.initials }}
+        <img
+          v-if="info.profileImage"
+          :src="info.profileImage"
+          :alt="info.full_name"
+          class="h-full w-full object-cover"
+        />
+        <template v-else>{{ info.initials }}</template>
       </span>
       <div class="leading-tight">
         <div class="text-sm font-semibold">{{ info.full_name }}</div>

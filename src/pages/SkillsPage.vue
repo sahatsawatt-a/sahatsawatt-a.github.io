@@ -14,7 +14,7 @@ const groups: SkillGroup[] = [
   {
     title: 'Core',
     description:
-      'The mental moves I rely on — breaking down problems, mapping integrations, and picking the right fallback when a model is uncertain.',
+      'The mental moves I rely on: breaking down problems, mapping integrations, and picking the right fallback when a model is uncertain.',
     emoji: '🧠',
     accent: 'from-emerald-400/40 to-teal-400/40',
     items: skills.core,
@@ -30,7 +30,7 @@ const groups: SkillGroup[] = [
   {
     title: 'Interests',
     description:
-      'Adjacent fields I keep tabs on — where I want these pipelines to drive themselves next.',
+      'Adjacent fields I keep tabs on: where I want these pipelines to drive themselves next.',
     emoji: '🧭',
     accent: 'from-amber-400/40 to-orange-400/40',
     items: skills.interests,

@@ -53,8 +53,8 @@ const bestFor: Record<Channel, string> = {
             {{ contact.intro }}
           </p>
           <p class="text-sm leading-relaxed text-slate-600 md:text-base dark:text-slate-300">
-            I usually reply within a day. The more context you can share — system,
-            constraints, what success looks like — the sharper the answer.
+            I usually reply within a day. The more context you can share (system,
+            constraints, what success looks like), the sharper the answer.
           </p>
 
           <div

@@ -7,6 +7,7 @@ import SkillsPage from '../pages/SkillsPage.vue'
 import ContactPage from '../pages/ContactPage.vue'
 import ProjectsPage from '../pages/ProjectsPage.vue'
 import ProjectDetailPage from '../pages/ProjectDetailPage.vue'
+import ResumePage from '../pages/ResumePage.vue'
 
 const routes = [
   { path: '/', component: HomePage },
@@ -16,6 +17,7 @@ const routes = [
   { path: '/contact', component: ContactPage },
   { path: '/projects', component: ProjectsPage },
   { path: '/projects/:slug', component: ProjectDetailPage, props: true },
+  { path: '/resume', component: ResumePage },
   { path: '/:pathMatch(.*)*', redirect: '/' },
 ]
 

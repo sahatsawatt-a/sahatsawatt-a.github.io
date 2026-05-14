@@ -9,7 +9,7 @@ const ML_TAGS = /yolo|dinov2|milvus|pytorch|ocr|embed|opencv/i
 const ETL_TAGS = /airflow|etl|spark|dbt|kafka/i
 const TOOLS_TAGS = /n8n|bash|cli|script/i
 
-/** Pure tag/title-driven category for a project — no template field involved. */
+/** Pure tag/title-driven category for a project; no template field involved. */
 export function categoryBadge(p: Project): CategoryBadge {
   if (p.tags.some(t => ML_TAGS.test(t))) {
     return {
@@ -41,6 +41,8 @@ export function categoryBadge(p: Project): CategoryBadge {
 
 /** Linked experience's company name, or "Side project" if unlinked. */
 export function companyFor(p: Project): string {
-  if (!p.exp_id) return 'Side project'
-  return experiences.find(e => e.exp_id === p.exp_id)?.company ?? 'Side project'
+  if (p.exp_id) {
+    return experiences.find(e => e.exp_id === p.exp_id)?.company ?? p.org ?? 'Side project'
+  }
+  return p.org ?? 'Side project'
 }

@@ -34,7 +34,7 @@ export interface Experience {
   company: string
   /** DD/MM/YYYY */
   start_date: string
-  /** DD/MM/YYYY — empty string means Present */
+  /** DD/MM/YYYY format. Empty string means Present */
   end_date: string
   summary: string[]
   /** Internal tools / services built during this role. Rendered as flat chips on /experience. */
@@ -55,6 +55,8 @@ export interface Project {
   img?: string
   /** Links this project to an experience entry */
   exp_id?: number
+  /** Overrides the company/attribution label when no exp_id applies (e.g. "University Project"). */
+  org?: string
   impact?: string[]
   purpose?: string[]
   features?: string[]
@@ -84,11 +86,11 @@ export const hero = {
     message: 'Open to work · Currently building Agentic AI Workflow',
   } as HeroStatus,
   heroTitle: {
-    full: 'Designs systems and builds Automation and Agentic AI.',
-    highlight: ['Systems', 'Automation', 'Agentic AI'],
+    full: 'Designs systems. Builds Automation & Agentic AI.',
+    highlight: ['systems', 'Automation', 'Agentic AI'],
   } as HeroTitle,
   description:
-    'I improve system workflows through automation, integration design, and a deep understanding of how systems behave in real environments.',
+    'I turn ML/CV research into production pipelines, OCR services, and agentic workflows other teams can rely on day to day.',
   quickCards: [
     {
       icon: '🧠',
@@ -171,9 +173,9 @@ export const experiences: Experience[] = [
     summary: [
       'Engaged as a consultant and expanded into hands-on implementation across multiple projects, designing automation pipelines that bring ML/CV models into production workflows.',
       'Build a Thai-aware PDF text extraction pipeline combining pdftotext with a Tesseract OCR fallback (high-DPI rasterisation, quality scoring, character-encoding repair) to handle both digital and scanned documents.',
-      'Implement multi-strategy image extraction from PDFs — lossless embedded extraction (PyMuPDF), YOLO detection on rendered pages, and Hough-Circle fallback — with regex-driven metadata parsing from structured page text.',
+      'Implement multi-strategy image extraction from PDFs (lossless embedded extraction via PyMuPDF, YOLO detection on rendered pages, and Hough-Circle fallback), with regex-driven metadata parsing from structured page text.',
       'Develop image-similarity retrieval that blends DINOv2 768-d embeddings (Milvus Lite vector store) with a CIE L*a*b* colour histogram so visually-identical items in different materials remain separable; serve DINOv2 (CLS embeddings, cosine similarity, attention-map viz) and YOLO behind FastAPI.',
-      'Stand up OCR services — EasyOCR (CRAFT detector + CRNN recogniser) and Tesseract for general extraction, plus Typhoon OCR (Thai-tuned API by SCB) for high-accuracy Thai text — delivered behind FastAPI and CLI interfaces.',
+      'Stand up OCR services (EasyOCR with CRAFT detector and CRNN recogniser, Tesseract for general extraction, plus Typhoon OCR, a Thai-tuned API by SCB, for high-accuracy Thai text), delivered behind FastAPI and CLI interfaces.',
     ],
     tools_built: [
       'pdf_extractor',
@@ -189,10 +191,10 @@ export const experiences: Experience[] = [
     end_date: '13/03/2026',
     summary: [
       'Gather requirements from stakeholders and translate API documentation into clear developer-ready specifications, delivering 6 successful API integrations.',
+      'Develop ETL pipelines that support the debt collection team across four ASEAN markets, improving data accuracy, reducing support investigation time, and enabling 100% outreach to clients with outstanding debt.',
       'Perform end-to-end issue analysis using deductive reasoning and hypothesis testing with infrastructure and engineering teams to resolve production and customer-facing issues.',
       'Build automation workflows using n8n, Apache Airflow and bash script to reduce manual operations and improve response time.',
-      'Develop ETL pipelines for the debt collection team to improve data accuracy, reduce support investigation time, and enable 100% outreach to clients with outstanding debt.',
-      'Own day-to-day ViciDial platform work — encode complex configuration into guided forms and self-service tools so non-technical teams can run routine setup without pulling in engineering.',
+      'Own day-to-day ViciDial platform work, encoding complex configuration into guided forms and self-service tools so non-technical teams can run routine setup without pulling in engineering.',
       'Lead multi-country rollout of the lead-automation pipeline, parameterising business rules so the same Airflow DAGs served regional debt-collection teams under different jurisdictions.',
       'Ship every production change with dry-run mode, audit-ready Excel exports, and a feedback loop that reconciled pipeline output against the live system, so silent drift was caught before it reached campaigns.',
     ],
@@ -226,10 +228,10 @@ export const projects: Project[] = [
     ],
 
     features: [
-      'Multi-strategy PDF extraction — lossless embedded images (PyMuPDF), YOLO detection on rendered pages, and Hough-Circle fallback for untrained domains.',
+      'Multi-strategy PDF extraction: lossless embedded images (PyMuPDF), YOLO detection on rendered pages, and Hough-Circle fallback for untrained domains.',
       'PDF-type auto-detection picks the right strategy (digital vs. scanned vs. unknown) without user input.',
       'Image-similarity retrieval blending DINOv2 768-d embeddings (Milvus Lite) with CIE L*a*b* colour histograms so visually-identical items in different materials remain separable.',
-      'Thai-aware OCR triad — pdftotext + Tesseract for fast digital extraction, EasyOCR (CRAFT + CRNN) for general use, Typhoon OCR (Thai-tuned LLM API) for high-accuracy Thai.',
+      'Thai-aware OCR triad: pdftotext + Tesseract for fast digital extraction, EasyOCR (CRAFT + CRNN) for general use, Typhoon OCR (Thai-tuned LLM API) for high-accuracy Thai.',
       'Regex-driven metadata parsing (dimensions, weight, year, reference codes) from structured page text; mapped per-image when table-column count matches image count.',
       'All services exposed as FastAPI endpoints behind Docker Compose with shared volumes and health checks.',
     ],
@@ -246,7 +248,7 @@ export const projects: Project[] = [
     highlight: true,
     title: 'ETL Lead Automation',
     description:
-      'Automated an end-to-end ETL pipeline that processes and uploads lead data into ViciDial, eliminating manual work and improving data reliability.',
+      'Automated an end-to-end ETL pipeline that prepares lead data for the debt collection team and uploads into ViciDial, eliminating manual work and improving data reliability.',
     tags: ['Apache Airflow', 'Python', 'SQL'],
     tools: ['Airflow', 'PostgreSQL', 'ViciDial API'],
     prog_langs: ['Python', 'SQL'],
@@ -318,6 +320,7 @@ export const projects: Project[] = [
     slug: 'restaurant-ordering-system',
     highlight: false,
     title: 'Restaurant Ordering System',
+    org: 'University Project',
     description:
       'Developed a QR-based ordering system that improves customer experience and streamlines restaurant operations.',
     tags: ['Laravel', 'Vue', 'TypeScript', 'QR Code'],
@@ -351,7 +354,7 @@ export const contact = {
   intro: "If you'd like help analysing a system, designing an integration, or automating a workflow, feel free to reach out.",
   links: [
     { label: 'Email', value: 'sahatsawatt.a@outlook.com', url: 'mailto:sahatsawatt.a@outlook.com' },
-    { label: 'GitHub', value: '@sahatsawatt-a', url: 'https://github.com/sahatsawatt-a' },
+    // { label: 'GitHub', value: '@sahatsawatt-a', url: 'https://github.com/sahatsawatt-a' },
   ] as ContactLink[],
 }
 
