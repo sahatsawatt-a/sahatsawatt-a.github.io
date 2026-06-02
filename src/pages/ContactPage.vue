@@ -158,12 +158,12 @@ const bestFor: Record<Channel, string> = {
                   {{ link.label }}
                 </div>
                 <div class="mt-0.5 break-all text-sm font-medium">{{ link.value }}</div>
-                <div
+                <!-- <div
                   class="mt-2 text-xs leading-relaxed text-slate-500 dark:text-slate-400"
                 >
                   <span class="font-mono text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500">Best for</span>
                   · {{ bestFor[channelOf(link)] }}
-                </div>
+                </div> -->
               </div>
 
               <span

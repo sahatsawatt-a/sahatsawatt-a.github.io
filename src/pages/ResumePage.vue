@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted, onBeforeUnmount } from 'vue'
 import { RouterLink } from 'vue-router'
 import {
   info,
@@ -9,6 +10,27 @@ import {
   type Project,
 } from '@/data/index'
 import { formatDate } from '@/utils/date'
+
+const PRINT_TITLE = 'sahatsawatt_a_resume'
+let originalTitle = ''
+const setPrintTitle = () => {
+  originalTitle = document.title
+  document.title = PRINT_TITLE
+}
+const restoreTitle = () => {
+  document.title = originalTitle || document.title
+}
+
+onMounted(() => {
+  window.addEventListener('beforeprint', setPrintTitle)
+  window.addEventListener('afterprint', restoreTitle)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('beforeprint', setPrintTitle)
+  window.removeEventListener('afterprint', restoreTitle)
+  restoreTitle()
+})
 
 const phone = '092-262-2870'
 const email = 'sahatsawatt.a@outlook.com'
