@@ -280,6 +280,31 @@ const onPrint = () => window.print()
               </span>
             </div>
           </div>
+
+          <div class="resume-qr mt-8 hidden print:block">
+            <h2
+              class="border-b-2 border-white/20 pb-1.5 text-base font-semibold uppercase tracking-wide"
+            >
+              Online
+            </h2>
+            <div class="mt-3 flex items-center gap-3">
+              <div class="qr-card rounded-md bg-white p-2">
+                <img
+                  src="/git_page_qr.png"
+                  alt="Portfolio QR code"
+                  class="block h-20 w-20"
+                />
+              </div>
+              <div class="qr-label min-w-0 flex-1 leading-snug">
+                <div class="text-[11px] font-semibold uppercase tracking-wide">
+                  Scan to view
+                </div>
+                <div class="text-[10px] text-white/70">
+                  Live portfolio &amp; latest projects
+                </div>
+              </div>
+            </div>
+          </div>
         </aside>
 
         <!-- ── RIGHT COLUMN (experience + education) ── -->
@@ -623,6 +648,36 @@ const onPrint = () => window.print()
     color: #ffffff !important;
   }
   .resume-aside li > div + div {
+    color: rgba(255, 255, 255, 0.78) !important;
+  }
+
+  /* Online QR block: QR on the left, label on the right; sized for scan */
+  .resume-qr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .resume-qr .qr-card {
+    background: #ffffff !important;
+    padding: 1mm !important;
+    border-radius: 1mm !important;
+    flex: 0 0 auto;
+  }
+  .resume-qr img {
+    width: 20mm !important;
+    height: 20mm !important;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  .resume-qr .qr-label {
+    line-height: 1.25 !important;
+  }
+  .resume-qr .qr-label > div:first-child {
+    font-size: 7.5pt !important;
+    color: #ffffff !important;
+    letter-spacing: 0.2pt !important;
+  }
+  .resume-qr .qr-label > div:last-child {
+    font-size: 6.5pt !important;
     color: rgba(255, 255, 255, 0.78) !important;
   }
 
