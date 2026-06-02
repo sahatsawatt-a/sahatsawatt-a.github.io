@@ -150,7 +150,7 @@ watch(() => route.fullPath, closeMenu)
       <nav
         v-if="isMenuOpen"
         id="mobile-nav"
-        class="glass absolute left-0 right-0 top-full z-30 mt-2 flex flex-col gap-1 rounded-2xl p-2 text-sm md:hidden"
+        class="absolute left-0 right-0 top-full z-50 mt-2 flex flex-col gap-1 rounded-2xl border border-slate-900/10 bg-white/80 p-2 text-sm shadow-lg shadow-slate-900/15 backdrop-blur-xl backdrop-saturate-150 md:hidden dark:border-white/10 dark:bg-white/10 dark:shadow-black/40"
       >
         <RouterLink
           v-for="item in navItems"
