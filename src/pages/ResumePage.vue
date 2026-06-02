@@ -143,7 +143,7 @@ const onPrint = () => window.print()
                 d="M6 9V3h12v6M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v7H6z"
               />
             </svg>
-            Print
+            Save PDF
           </button>
         </div>
       </div>
@@ -517,7 +517,7 @@ const onPrint = () => window.print()
 <style>
 @media print {
   @page {
-    size: A4;
+    size: A4 portrait;
     margin: 0;
   }
 
