@@ -529,6 +529,19 @@ const onPrint = () => window.print()
     padding: 0 !important;
     width: 210mm !important;
     height: 297mm !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Collapse every ancestor of the resume so nothing inherits a min-height that
+     would push content onto a second page (Tailwind's min-h-screen, in particular). */
+  body, body * {
+    min-height: 0 !important;
+  }
+  #app {
+    width: 210mm !important;
+    height: 297mm !important;
+    overflow: hidden !important;
   }
 
   /* Strip the page-level glass card so the document fills the sheet. */
@@ -539,6 +552,8 @@ const onPrint = () => window.print()
     border: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
+    height: 297mm !important;
+    overflow: hidden !important;
   }
   .resume-page .gradient-border::before {
     display: none !important;
