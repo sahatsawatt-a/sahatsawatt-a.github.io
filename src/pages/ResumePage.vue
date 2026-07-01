@@ -34,7 +34,6 @@ onBeforeUnmount(() => {
 
 const phone = '092-262-2870'
 const email = 'sahatsawatt.a@outlook.com'
-const address = '894/22 Waterford Sukhumvit 50, Sukhumvit Rd, Phra Khanong, Khlong Toei, Bangkok 10260'
 
 const languages = [
   { name: 'Thai', level: 'Native' },
@@ -215,24 +214,6 @@ const onPrint = () => window.print()
               >
                 {{ email }}
               </a>
-            </div>
-            <div class="flex items-start gap-3">
-              <svg
-                class="mt-0.5 h-4 w-4 shrink-0 text-white/70"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 22s7-7.58 7-13a7 7 0 10-14 0c0 5.42 7 13 7 13z"
-                />
-                <circle cx="12" cy="9" r="2.5" />
-              </svg>
-              <span class="leading-snug">{{ address }}</span>
             </div>
           </div>
 
