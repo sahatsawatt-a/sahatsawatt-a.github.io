@@ -190,9 +190,11 @@ export const experiences: Experience[] = [
     start_date: '13/08/2024',
     end_date: '13/03/2026',
     summary: [
-      'Gather requirements from stakeholders and translate API documentation into clear developer-ready specifications, delivering 6 successful API integrations.',
-      'Develop ETL pipelines that support the debt collection team across four ASEAN markets, improving data accuracy, reducing support investigation time, and enabling 100% outreach to clients with outstanding debt.',
-      'Perform end-to-end issue analysis using deductive reasoning and hypothesis testing with infrastructure and engineering teams to resolve production and customer-facing issues.',
+      'Gather requirements from stakeholders and translate API documentation into clear developer-ready specifications.',
+      // 'Gather requirements from stakeholders and translate API documentation into clear developer-ready specifications, delivering 6 successful API integrations.',
+      'Develop ETL pipelines that support the debt collection team across four ASEAN markets, improving data accuracy, reducing support investigation time, and enabling better outreach to clients with outstanding debt.',
+      'Perform issue analysis and testing with infrastructure and presales teams to resolve production and customer-facing issues.',
+      // 'Perform end-to-end issue analysis using deductive reasoning and hypothesis testing with infrastructure and engineering teams to resolve production and customer-facing issues.',
       'Build automation workflows using n8n, Apache Airflow and bash script to reduce manual operations and improve response time.',
       'Own day-to-day ViciDial platform work, encoding complex configuration into guided forms and self-service tools so non-technical teams can run routine setup without pulling in engineering.',
       'Lead multi-country rollout of the lead-automation pipeline, parameterising business rules so the same Airflow DAGs served regional debt-collection teams under different jurisdictions.',
@@ -202,6 +204,38 @@ export const experiences: Experience[] = [
 ]
 
 export const projects: Project[] = [
+  {
+    proj_id: 5,
+    slug: 'zyrenn-personal-workspace',
+    highlight: true,
+    title: 'ZyrenN: Personal Workspace with AI Agent Access',
+    description:
+      'A self-hosted workspace of notes, whiteboard boards, tables, and a private Drive, all readable and writable by AI clients through MCP servers.',
+    tags: ['Laravel', 'Vue', 'Inertia', 'Konva', 'Tiptap', 'MCP'],
+    tools: ['Laravel Reverb', 'PostgreSQL', 'Docker', 'Playwright'],
+    prog_langs: ['PHP', 'TypeScript'],
+
+    purpose: [
+      'Keep notes, diagrams, structured data, and files in one self-hosted place',
+      'Let AI agents read and write that content as a first-class client, not a scraper',
+      'Run entirely in Docker with nothing but Docker on the host',
+      'Protect data with scheduled backups that restore the database and files together',
+    ],
+
+    features: [
+      'Rich-text notes (Tiptap) with Markdown in and out, callouts, tables, code, Mermaid diagrams, and KaTeX, autosaved as you type.',
+      'Endless whiteboard canvas (Konva) with shapes, sticky notes, flowchart symbols, pictures, formulae, and connectors that stay attached as shapes move.',
+      'MCP servers let AI clients create and edit notes, boards, tables, and Drive files, with per-user tokens and an admin server.',
+      'Tables stored as real database tables per grid, with typed columns, search, filters, sort, and CSV export.',
+      'Boards embed inside notes, Mermaid flowcharts convert into movable shapes, and 16:9 frames play as slides.',
+      'Private Drive serves files only to their owner; notes export to PDF as a download or into the Drive.',
+      'Backups every 6 hours pair a Postgres dump with the files on disk, with age-based rotation.',
+      'Playwright end-to-end suites exercise the canvas in a real browser alongside the PHP test suite.',
+    ],
+
+    packages: ['laravel/mcp', 'laravel/reverb', 'laravel/fortify', 'inertiajs', 'tiptap', 'konva', 'vue-konva', 'mermaid', 'katex', 'reka-ui'],
+  },
+
   {
     proj_id: 4,
     slug: 'document-image-kb-embedding',
@@ -256,7 +290,7 @@ export const projects: Project[] = [
     exp_id: 1,
 
     impact: [
-      'Achieved 100% contact coverage for targeted debtors',
+      // 'Achieved 100% contact coverage for targeted debtors',
       'Reduced manual data processing and upload effort',
       'Improved data accuracy and consistency across campaigns',
     ],
@@ -278,8 +312,6 @@ export const projects: Project[] = [
     ],
 
     packages: ['numpy', 'pandas'],
-    feedback:
-      'Enabled agents to consistently reach all targeted users with outstanding debt.',
   },
 
   {
