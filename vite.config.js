@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 const VITE_HOST = process.env.VITE_HOST || 'localhost'
+const isLocal = VITE_HOST === 'localhost'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -13,15 +14,17 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     allowedHosts: [VITE_HOST],
-    watch: {
-      usePolling: true,  // Docker-friendly file watching
-      interval: 100,
-    },
-    hmr: {
-      host: VITE_HOST,
-      protocol: 'wss',
-      clientPort: 443,
-    },
+    // watch: {
+    //   usePolling: true,  // Docker-friendly file watching
+    //   interval: 100,
+    // },
+    hmr: isLocal
+      ? true // Uses default ws://localhost:5173
+      : {
+          host: VITE_HOST,
+          protocol: 'wss',
+          clientPort: 443,
+        },
   },
   base: "/",
     resolve: {

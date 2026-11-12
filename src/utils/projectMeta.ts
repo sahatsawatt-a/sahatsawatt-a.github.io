@@ -39,10 +39,10 @@ export function categoryBadge(p: Project): CategoryBadge {
   }
 }
 
-/** Linked experience's company name, or "Side project" if unlinked. */
+/** Linked experience's company name, or "Personal project" if unlinked. */
 export function companyFor(p: Project): string {
   if (p.exp_id) {
-    return experiences.find(e => e.exp_id === p.exp_id)?.company ?? p.org ?? 'Side project'
+    return experiences.find(e => e.exp_id === p.exp_id)?.company ?? p.org ?? 'Personal project'
   }
-  return p.org ?? 'Side project'
+  return p.org ?? 'Personal project'
 }

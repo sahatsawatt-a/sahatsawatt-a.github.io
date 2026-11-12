@@ -75,46 +75,54 @@ export interface ContactLink {
 export const info = {
   profileImage: '/profile_pic.jpg',
   full_name: 'Sahatsawatt Anankatham',
-  nickname: 'Guy',
-  initials: 'SA',
+  nickname: 'Skye',
+  // initials: 'SA',
   tagline: 'Agentic AI · Automation Workflow',
 }
 
 export const hero = {
   status: {
     state: 'open',
-    message: 'Open to work · Currently building Agentic AI Workflow',
+    message: 'Open to new opportunities',
   } as HeroStatus,
   heroTitle: {
-    full: 'Designs systems. Builds Automation & Agentic AI.',
-    highlight: ['systems', 'Automation', 'Agentic AI'],
+    pre: "Hi, I'm Skye",
+    full: "A Full-Stack Developer & System Analyst",
+    highlight: ['Full-Stack Developer', 'System Analyst'],
   } as HeroTitle,
   description:
-    'I turn ML/CV research into production pipelines, OCR services, and agentic workflows other teams can rely on day to day.',
+    "I build end-to-end web applications and AI-powered automation that save time and streamline operations.",
+  exploring: {
+    avatarUrl: '/Boy Studying Science.svg',
+    label: 'Currently Exploring',
+    topics: [
+      { title: 'IoT & Robotics', tag: 'ESP32 · Arduino' }
+    ]
+  },
   quickCards: [
-    {
+        {
       icon: '🧠',
-      label: 'Core',
-      value: 'ML/CV · System Analysis',
-      accent: 'from-emerald-400/40 to-teal-400/40',
+      label: 'Core Focus',
+      value: 'System Analysis · Agentic AI',
+      accent: 'from-orange-400/40 to-rose-400/40',
+    },
+    {
+      icon: '🖥️',
+      label: 'Full-Stack',
+      value: 'Laravel · Vue 3 · TypeScript',
+      accent: 'from-sky-400/40 to-indigo-400/40',
     },
     {
       icon: '👁️',
-      label: 'Vision',
-      value: 'YOLO · DINOv2 · OCR',
+      label: 'AI & Vision',
+      value: 'FastAPI · YOLO · DINOv2 · OCR',
       accent: 'from-violet-400/40 to-fuchsia-400/40',
     },
     {
       icon: '⚙️',
-      label: 'Stack',
-      value: 'Python · FastAPI · Vue 3',
-      accent: 'from-sky-400/40 to-blue-400/40',
-    },
-    {
-      icon: '🗄️',
-      label: 'Data',
-      value: 'Milvus · PostgreSQL',
-      accent: 'from-amber-400/40 to-orange-400/40',
+      label: 'Data & Ops',
+      value: 'PostgreSQL · Airflow · Docker',
+      accent: 'from-emerald-400/40 to-teal-400/40',
     },
   ] as QuickCard[],
 }
@@ -122,10 +130,13 @@ export const hero = {
 export const about = {
   title: "About Me",
   body: [
-    `I build automation pipelines around ML and computer vision models. I take research tools like YOLO detectors, DINOv2 embeddings, and OCR engines and turn them into FastAPI services, CLI tools, and Docker-based pipelines that other teams can use directly in their own workflows.`,
-    `I started my career as a system analyst, so I think about ML systems the same way I think about any integration. Where does the data come from? Where can it break? What is the fallback when a model is not confident? This way of thinking shapes every pipeline I build. Most of the time, I prefer multi-strategy approaches (for example, embedded extraction first, then YOLO detection, then Hough-Circle as a fallback) instead of relying on only one model.`,
-    `I also test and verify the data at every step of a pipeline. A model running without error does not always mean the output is correct, so I check the results against expected behaviour before passing them on. This way, other teams can rely on the data without having to clean or debug it first.`,
-    `Right now, my main focus is visual retrieval and document understanding. I combine DINOv2 embeddings with CIE L*a*b* colour histograms to do material-aware image similarity, set up Thai-aware OCR stacks (Tesseract, EasyOCR, and Typhoon), and package everything as microservices. At the same time, I am also exploring agentic AI patterns so these pipelines can run by themselves instead of waiting for an orchestrator.`,
+
+    `I'm a Bangkok-based Full-Stack Developer and System Analyst who loves building software that runs reliably behind the scenes. With 2+ years of experience spanning full-stack web apps (Laravel, Vue 3), data engineering, and workflow automation, I focus on turning messy operational bottlenecks into clean, maintainable systems.`,
+
+    `Because my background combines system analysis with hands-on engineering, I always design around edge cases and data reliability. Whether I am building self-hosted workspaces with AI agent access, orchestrating multi-country ETL pipelines in Airflow and n8n, or packaging computer vision and Thai-aware OCR models into FastAPI microservices, I make sure every step is testable, observable, and built to scale.`,
+
+    `Outside of web and AI systems, I enjoy exploring how software interacts with the physical world. Lately, you'll find me tinkering with IoT and robotics using ESP32 and Arduino microcontrollers, experimenting with sensors and autonomous hardware workflows.`,
+
   ],
 }
 
@@ -169,7 +180,7 @@ export const experiences: Experience[] = [
     role: 'Agentic AI Engineer',
     company: 'Avalant',
     start_date: '16/03/2026',
-    end_date: '',
+    end_date: '16/10/2026',
     summary: [
       'Engaged as a consultant and expanded into hands-on implementation across multiple projects, designing automation pipelines that bring ML/CV models into production workflows.',
       'Build a Thai-aware PDF text extraction pipeline combining pdftotext with a Tesseract OCR fallback (high-DPI rasterisation, quality scoring, character-encoding repair) to handle both digital and scanned documents.',
@@ -191,10 +202,8 @@ export const experiences: Experience[] = [
     end_date: '13/03/2026',
     summary: [
       'Gather requirements from stakeholders and translate API documentation into clear developer-ready specifications.',
-      // 'Gather requirements from stakeholders and translate API documentation into clear developer-ready specifications, delivering 6 successful API integrations.',
       'Develop ETL pipelines that support the debt collection team across four ASEAN markets, improving data accuracy, reducing support investigation time, and enabling better outreach to clients with outstanding debt.',
       'Perform issue analysis and testing with infrastructure and presales teams to resolve production and customer-facing issues.',
-      // 'Perform end-to-end issue analysis using deductive reasoning and hypothesis testing with infrastructure and engineering teams to resolve production and customer-facing issues.',
       'Build automation workflows using n8n, Apache Airflow and bash script to reduce manual operations and improve response time.',
       'Own day-to-day ViciDial platform work, encoding complex configuration into guided forms and self-service tools so non-technical teams can run routine setup without pulling in engineering.',
       'Lead multi-country rollout of the lead-automation pipeline, parameterising business rules so the same Airflow DAGs served regional debt-collection teams under different jurisdictions.',
@@ -290,7 +299,6 @@ export const projects: Project[] = [
     exp_id: 1,
 
     impact: [
-      // 'Achieved 100% contact coverage for targeted debtors',
       'Reduced manual data processing and upload effort',
       'Improved data accuracy and consistency across campaigns',
     ],
@@ -386,7 +394,7 @@ export const contact = {
   intro: "If you'd like help analysing a system, designing an integration, or automating a workflow, feel free to reach out.",
   links: [
     { label: 'Email', value: 'sahatsawatt.a@outlook.com', url: 'mailto:sahatsawatt.a@outlook.com' },
-    // { label: 'GitHub', value: '@sahatsawatt-a', url: 'https://github.com/sahatsawatt-a' },
+    { label: 'GitHub', value: '@sahatsawatt-a', url: 'https://github.com/sahatsawatt-a' },
   ] as ContactLink[],
 }
 
