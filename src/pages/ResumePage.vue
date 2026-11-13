@@ -6,6 +6,7 @@ import {
   info,
   skills,
   experiences,
+  education,
   projects,
   type Experience,
   type Project,
@@ -56,37 +57,6 @@ const technicalGroups = [
   { label: 'APIs & Automation', value: 'REST APIs, Webhooks, Apache Airflow, n8n' },
   { label: 'DevOps & Cloud', value: 'Docker, Linux, Networking, AWS (EC2, S3)' },
   { label: 'AI / ML', value: 'PyTorch, FastAPI, DINOv2, YOLO, Milvus, Ollama' },
-]
-
-const education = [
-  {
-    school: 'Assumption University of Thailand (ABAC)',
-    period: '2019 – 2024',
-    degree: 'Bachelor Degree of Business Administration',
-    details: [
-      { label: 'Major', value: 'Management Information System' },
-      { label: 'Concentration', value: 'Accounting' },
-    ],
-    projects: [
-      {
-        title: 'Restaurant Ordering System',
-        bullets: [
-          'Led a team and solely developed the website for a restaurant ordering system using PHP Laravel 10, Inertia with VueJS 3, MySQL.',
-          'Collaborated closely with the owner and stakeholders to tailor the requirements into a practical software implementation.',
-          'Ensured efficient team communication and provided precise comprehensive reporting to external users.',
-        ],
-      },
-      {
-        title: 'Cyber Security Project',
-        bullets: [
-          'Led a team of 10 members.',
-          'Deployed a WooCommerce WordPress website for a competition utilizing an AWS cloud server running Ubuntu 22.04.',
-          'Enforced security protocols including firewall configurations, SSL certificate installations, HTTP header configurations, and routine system updates to safeguard web applications and data.',
-          'Identified vulnerabilities, secured the server, and successfully resolved issues.',
-        ],
-      },
-    ],
-  },
 ]
 
 const sortedExperiences: Experience[] = [...experiences].sort((a, b) => {

@@ -41,6 +41,30 @@ export interface Experience {
   tools_built?: string[]
 }
 
+export interface EducationDetail {
+  label: string
+  value: string
+}
+
+export interface EducationProject {
+  title: string
+  bullets: string[]
+}
+
+export interface Education {
+  edu_id: number
+  school: string
+  degree: string
+  /** DD/MM/YYYY */
+  start_date: string
+  /** DD/MM/YYYY */
+  end_date: string
+  period?: string
+  details?: EducationDetail[]
+  summary?: string[]
+  projects?: EducationProject[]
+}
+
 export interface Project {
   proj_id: number
   /** URL slug for the detail page route */
@@ -55,6 +79,8 @@ export interface Project {
   img?: string
   /** Links this project to an experience entry */
   exp_id?: number
+  /** Links this project to an education entry */
+  edu_id?: number
   /** Overrides the company/attribution label when no exp_id applies (e.g. "University Project"). */
   org?: string
   impact?: string[]
@@ -77,7 +103,7 @@ export const info = {
   full_name: 'Sahatsawatt Anankatham',
   nickname: 'Skye',
   // initials: 'SA',
-  tagline: 'Agentic AI · Automation Workflow',
+  tagline: 'AI · Automation · Integration',
 }
 
 export const hero = {
@@ -131,7 +157,7 @@ export const about = {
   title: "About Me",
   body: [
 
-    `I'm a Bangkok-based Full-Stack Developer and System Analyst who loves building software that runs reliably behind the scenes. With 2+ years of experience spanning full-stack web apps (Laravel, Vue 3), data engineering, and workflow automation, I focus on turning messy operational bottlenecks into clean, maintainable systems.`,
+    `I'm a Bangkok-based Full-Stack Developer and System Analyst who loves building software that runs reliably behind the scenes. With 2+ years of experience spanning full-stack web apps (Laravel, Vue 3, Postgres), data engineering, and workflow automation, I focus on turning messy operational bottlenecks into clean, maintainable systems.`,
 
     `Because my background combines system analysis with hands-on engineering, I always design around edge cases and data reliability. Whether I am building self-hosted workspaces with AI agent access, orchestrating multi-country ETL pipelines in Airflow and n8n, or packaging computer vision and Thai-aware OCR models into FastAPI microservices, I make sure every step is testable, observable, and built to scale.`,
 
@@ -208,6 +234,45 @@ export const experiences: Experience[] = [
       'Own day-to-day ViciDial platform work, encoding complex configuration into guided forms and self-service tools so non-technical teams can run routine setup without pulling in engineering.',
       'Lead multi-country rollout of the lead-automation pipeline, parameterising business rules so the same Airflow DAGs served regional debt-collection teams under different jurisdictions.',
       'Ship every production change with dry-run mode, audit-ready Excel exports, and a feedback loop that reconciled pipeline output against the live system, so silent drift was caught before it reached campaigns.',
+    ],
+  },
+]
+
+export const education: Education[] = [
+  {
+    edu_id: 1,
+    school: 'Assumption University of Thailand (ABAC)',
+    period: '2019 – 2024',
+    degree: 'Bachelor Degree of Business Administration (B.B.A.)',
+    start_date: '01/08/2019',
+    end_date: '31/05/2024',
+    details: [
+      { label: 'Major', value: 'Management Information System (MIS)' },
+      { label: 'Concentration', value: 'Accounting' },
+    ],
+    summary: [
+      'Focused on Management Information Systems and Accounting, bridging business workflows with software engineering.',
+      'Led the capstone team and solely developed the restaurant QR-ordering system using Laravel, Vue 3, and Inertia.',
+      'Led a 10-member competition team deploying and hardening WooCommerce on AWS Ubuntu with custom firewall and SSL protocols.',
+    ],
+    projects: [
+      {
+        title: 'Restaurant Ordering System',
+        bullets: [
+          'Led a team and solely developed the website for a restaurant ordering system using PHP Laravel 10, Inertia with VueJS 3, MySQL.',
+          'Collaborated closely with the owner and stakeholders to tailor the requirements into a practical software implementation.',
+          'Ensured efficient team communication and provided precise comprehensive reporting to external users.',
+        ],
+      },
+      {
+        title: 'Cyber Security Project',
+        bullets: [
+          'Led a team of 10 members.',
+          'Deployed a WooCommerce WordPress website for a competition utilizing an AWS cloud server running Ubuntu 22.04.',
+          'Enforced security protocols including firewall configurations, SSL certificate installations, HTTP header configurations, and routine system updates to safeguard web applications and data.',
+          'Identified vulnerabilities, secured the server, and successfully resolved issues.',
+        ],
+      },
     ],
   },
 ]
@@ -361,6 +426,7 @@ export const projects: Project[] = [
     highlight: false,
     title: 'Restaurant Ordering System',
     org: 'University Project',
+    edu_id: 1,
     description:
       'Developed a QR-based ordering system that improves customer experience and streamlines restaurant operations.',
     tags: ['Laravel', 'Vue', 'TypeScript', 'QR Code'],
