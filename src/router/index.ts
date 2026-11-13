@@ -16,8 +16,10 @@ const routes = [
   { path: '/skills', component: SkillsPage },
   { path: '/contact', component: ContactPage },
   { path: '/projects', component: ProjectsPage },
-  { path: '/projects/:slug', component: ProjectDetailPage, props: true },
+  { path: '/projects/:slug', component: ProjectDetailPage },
   { path: '/resume', component: ResumePage },
+  // old demo links
+  { path: '/demo/projects/:slug', redirect: (to: { params: { slug?: string | string[] } }) => `/projects/${to.params.slug}` },
   { path: '/:pathMatch(.*)*', redirect: '/' },
 ]
 

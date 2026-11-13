@@ -219,30 +219,30 @@ export const projects: Project[] = [
     highlight: true,
     title: 'ZyrenN: Personal Workspace with AI Agent Access',
     description:
-      'A self-hosted workspace of notes, whiteboard boards, tables, and a private Drive, all readable and writable by AI clients through MCP servers.',
-    tags: ['Laravel', 'Vue', 'Inertia', 'Konva', 'Tiptap', 'MCP'],
-    tools: ['Laravel Reverb', 'PostgreSQL', 'Docker', 'Playwright'],
+      'A self-hosted workspace where notes, whiteboards, tables, files, workflows and many other apps live together, and AI clients can read and change all of them through about 155 MCP tools.',
+    tags: ['Laravel', 'Vue', 'Inertia', 'MCP', 'Yjs', 'Konva', 'Tiptap'],
+    tools: ['Laravel Reverb', 'Hocuspocus', 'PostgreSQL', 'Docker', 'Playwright'],
     prog_langs: ['PHP', 'TypeScript'],
 
     purpose: [
-      'Keep notes, diagrams, structured data, and files in one self-hosted place',
+      'Keep notes, diagrams, structured data, files and automations in one self-hosted place',
       'Let AI agents read and write that content as a first-class client, not a scraper',
-      'Run entirely in Docker with nothing but Docker on the host',
-      'Protect data with scheduled backups that restore the database and files together',
+      'Support live collaboration through shared projects and real-time co-editing',
+      'Run entirely in Docker, with scheduled backups that restore the database and files together',
     ],
 
     features: [
-      'Rich-text notes (Tiptap) with Markdown in and out, callouts, tables, code, Mermaid diagrams, and KaTeX, autosaved as you type.',
-      'Endless whiteboard canvas (Konva) with shapes, sticky notes, flowchart symbols, pictures, formulae, and connectors that stay attached as shapes move.',
-      'MCP servers let AI clients create and edit notes, boards, tables, and Drive files, with per-user tokens and an admin server.',
-      'Tables stored as real database tables per grid, with typed columns, search, filters, sort, and CSV export.',
-      'Boards embed inside notes, Mermaid flowcharts convert into movable shapes, and 16:9 frames play as slides.',
-      'Private Drive serves files only to their owner; notes export to PDF as a download or into the Drive.',
+      'Rich-text notes (Tiptap) with Markdown, callouts, tables, code, Mermaid and KaTeX, co-edited live over Yjs + Hocuspocus.',
+      'Endless whiteboards (Konva) with shapes, sticky notes and attached connectors; boards embed in notes, Mermaid converts into shapes, and 16:9 frames play as slides.',
+      'About 155 MCP tools on user and global servers, with per-key scopes; agents edit by part (a note block, a board frame, a page of rows).',
+      'Visual workflow editor with manual, webhook, cron, email and chat triggers, versioned publishing, and sandboxed JS (QuickJS/WASM) and Python (Pyodide) steps.',
+      'Projects with owner/editor/viewer roles, tickets, a product tracker, and a customer inbox for LINE, Telegram, WhatsApp and Instagram with knowledge-grounded AI replies.',
+      'Typed-column tables with search, filters, sort and CSV export; a private Drive; notes export to PDF.',
+      'Browser checks replayed by a real Chrome in a container; maker tools for circuits, 3D parts, robots, music, maps and trips.',
       'Backups every 6 hours pair a Postgres dump with the files on disk, with age-based rotation.',
-      'Playwright end-to-end suites exercise the canvas in a real browser alongside the PHP test suite.',
     ],
 
-    packages: ['laravel/mcp', 'laravel/reverb', 'laravel/fortify', 'inertiajs', 'tiptap', 'konva', 'vue-konva', 'mermaid', 'katex', 'reka-ui'],
+    packages: ['laravel/mcp', 'laravel/reverb', 'laravel/sanctum', 'laravel/fortify', 'inertiajs', 'tiptap', 'yjs', 'hocuspocus', 'konva', '@vue-flow/core', 'mermaid', 'katex', 'maplibre-gl', 'three', 'tone', 'reka-ui'],
   },
 
   {
