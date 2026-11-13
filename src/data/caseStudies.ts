@@ -410,7 +410,7 @@ export const caseStudies: CaseStudy[] = [
         how: 'Solid geometry with manifold-3d, rendered in three.js; reports size, volume and grams of PLA.',
       },
       {
-        group: 'Planning', src: '/projects/zyrenn/trip.mp4', poster: '/projects/zyrenn/trip.png',
+        group: 'Planning', src: '/projects/zyrenn/trip.mp4', poster: '/projects/zyrenn/trip.webp',
         caption: 'A three-day trip on a map, switched day by day.',
         how: 'Routes and arrival times from Valhalla on OpenStreetMap, drawn with MapLibre; costs tracked against a budget.',
       },
