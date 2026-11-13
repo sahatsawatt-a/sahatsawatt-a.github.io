@@ -387,7 +387,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         group: 'Real-time', src: '/projects/zyrenn/coedit.mp4', poster: '/projects/zyrenn/coedit.png',
-        caption: 'Two people in one note: Mai writes while Demo ticks off the checklist.',
+        caption: 'Two people in one note: Mai writes in Notes while Demo edits the checklist — named carets show who is where.',
         how: 'Yjs CRDTs synced through a Hocuspocus server, with named carets and presence.',
       },
       {
