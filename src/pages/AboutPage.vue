@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ProfileImage from '@/components/ui/ProfileImage.vue'
 import { RouterLink } from 'vue-router'
 import { about, hero, info } from '@/data/index'
 </script>
@@ -39,10 +40,9 @@ import { about, hero, info } from '@/data/index'
           <div
             class="group relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl ring-1 ring-slate-900/10 dark:ring-white/10"
           >
-            <img
-              :src="info.profileImage"
+            <ProfileImage
+              :size="384"
               :alt="info.full_name"
-              loading="lazy"
               class="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
             />
             <div

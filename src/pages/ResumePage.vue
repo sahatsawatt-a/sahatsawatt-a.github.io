@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ProfileImage from '@/components/ui/ProfileImage.vue'
 import { onMounted, onBeforeUnmount } from 'vue'
 import { RouterLink } from 'vue-router'
 import {
@@ -158,10 +159,10 @@ const onPrint = () => window.print()
             <div
               class="resume-avatar h-32 w-32 overflow-hidden rounded-full ring-4 ring-white/20 md:h-36 md:w-36"
             >
-              <img
-                :src="info.profileImage"
+              <ProfileImage
+                :size="144"
                 :alt="info.full_name"
-                loading="lazy"
+                eager
                 class="h-full w-full object-cover"
               />
             </div>
