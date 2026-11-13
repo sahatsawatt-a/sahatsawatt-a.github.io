@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ProfileImage from '@/components/ui/ProfileImage.vue'
 import { ref, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 import { info } from '@/data/index'
@@ -32,10 +33,11 @@ watch(() => route.fullPath, closeMenu)
         <span
           class="grid h-9 w-9 shrink-0 place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-violet-400/30 to-sky-400/30 text-sm font-bold tracking-tight ring-1 ring-inset ring-white/20"
         >
-          <img
+          <ProfileImage
             v-if="info.profileImage"
-            :src="info.profileImage"
+            :size="36"
             :alt="info.full_name"
+            eager
             class="h-full w-full object-cover"
           />
           <template v-else>{{ info.initials }}</template>
