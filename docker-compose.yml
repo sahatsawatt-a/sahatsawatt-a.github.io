@@ -17,7 +17,7 @@ services:
       - .:/app
       - /app/node_modules
     ports:
-      - "5173:5173"
+      - "5174:5173"
     environment:
       VITE_BASE: "/"
       VITE_HOST: "${PUBLIC_HOST}"
